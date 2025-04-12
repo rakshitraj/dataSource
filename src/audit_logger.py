@@ -1,11 +1,11 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 def log_audit(job_id, status, s3_path, error, start_time):
-    end_time = datetime.utcnow()
+    end_time = datetime.now(timezone.utc)
     duration = (end_time - start_time).total_seconds()
 
     log_entry = {
